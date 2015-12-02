@@ -18,6 +18,10 @@ public:
 
 private:
     QScopedPointer<Ui::MainWindow> ui;
+
+private slots:
+    void testClick();
 };
 
 #endif
+

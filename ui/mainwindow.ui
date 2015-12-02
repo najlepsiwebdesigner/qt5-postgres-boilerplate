@@ -14,7 +14,7 @@
    <string>SciDB</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="connectPG">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>connect</string>
+     <string>connectPG</string>
     </property>
    </widget>
   </widget>

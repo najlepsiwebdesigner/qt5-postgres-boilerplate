@@ -1,36 +1,28 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
-#include <pqxx/pqxx>
 #include <iostream>
 
-using namespace pqxx;
-using namespace std;
+int testFcn() {
+   std::cout << "testFcn!" << std::endl;
+    return 0;
+}
+
 
 MainWindow::MainWindow(QWidget *parent)
 : QMainWindow(parent), ui(new Ui::MainWindow)
 {
+    // this has to go before connect!
     ui->setupUi(this);
 
-    try{
-          connection C("dbname=scidb user=postgres password=postgres \
-          hostaddr=127.0.0.1 port=5432");
-          if (C.is_open()) {
-             cout << "Opened database successfully: " << C.dbname() << endl;
-          } else {
-             cout << "Can't open database" << endl;
-//             return 1;
-          }
-          C.disconnect ();
-       }catch (const std::exception &e){
-          cerr << e.what() << std::endl;
-//          return 1;
-       }
+    connect(ui->connectPG, SIGNAL(clicked()), this, SLOT(testClick()));
 
-
-
+//    connect(ui->connectPG,&QPushButton::clicked, testFcn);
 }
 
 MainWindow::~MainWindow()
 {
+}
+
+void MainWindow::testClick() {
+    std::cout << "testClick!" << std::endl;
 }

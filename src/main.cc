@@ -1,8 +1,32 @@
 #include <QApplication>
+
+#include <pqxx/pqxx>
+#include <iostream>
+
 #include "mainwindow.h"
+
+using namespace pqxx;
+using namespace std;
 
 int main(int argc, char *argv[])
 {
+    try{
+          connection C("dbname=scidb user=postgres password=postgres \
+          hostaddr=127.0.0.1 port=5432");
+          if (C.is_open()) {
+             cout << "Opened database successfully: " << C.dbname() << endl;
+          } else {
+             cout << "Can't open database" << endl;
+//             return 0;
+          }
+          C.disconnect ();
+       }catch (const std::exception &e){
+          cerr << e.what() << std::endl;
+//          return 0;
+       }
+
+
+
     QApplication app(argc, argv);
 
     // Retina display support for Mac OS, iOS and X11:
@@ -21,3 +45,5 @@ int main(int argc, char *argv[])
     mainWindow.show();
     return app.exec();
 }
+
+
